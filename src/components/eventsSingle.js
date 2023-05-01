@@ -1,23 +1,25 @@
 import React from "react";
-import Link from "next/link";
 import { Card } from "react-bootstrap";
 import Button from "./button/button";
-const EventsSingle = ({ datas }) => {
-  const { image, description, title, date, id } = datas;
+import classes from "../styles/eventSingle.module.css";
+export const tanggalWaktu = (date) => {
   const tanggal = new Date(date).toLocaleDateString("id-ID", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-
-  console.log(image);
+  return tanggal;
+};
+const EventsSingle = ({ datas }) => {
+  const { image, description, title, date, id } = datas;
+  const tanggal = tanggalWaktu(date);
   return (
     <div className="col d-flex justify-content-center">
       <Card style={{ width: "18rem" }}>
         <Card.Img style={{ height: "150px" }} variant="top" src={image} />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
-          <Card.Text>{description}</Card.Text>
+          <Card.Text className={classes.desRataTengah}>{description}</Card.Text>
           <br />
           <Card.Text>{tanggal}</Card.Text>
           {/* 
